@@ -36,6 +36,18 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
+    public List<Tool> getByTag(String tag) {
+        List<Tool> tools = repository.findByTag(tag);
+
+        if (tools.isEmpty()) {
+            throw new ToolNotFoundException(String.format("No records found for tag '%s'", tag));
+        } else {
+            return tools;
+        }
+
+    }
+
+    @Override
     public Tool update(Long id, ToolDTO data) {
         final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
 

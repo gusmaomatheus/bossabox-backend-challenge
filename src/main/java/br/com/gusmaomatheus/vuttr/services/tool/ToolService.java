@@ -13,6 +13,8 @@ public interface ToolService {
 
     Tool getById(Long id);
 
+    List<Tool> getByTag(String tag);
+
     Tool update(Long id, ToolDTO data);
 
     void delete(Long id);
