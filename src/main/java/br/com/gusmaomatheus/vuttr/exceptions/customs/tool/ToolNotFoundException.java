@@ -1,4 +1,4 @@
-package br.com.gusmaomatheus.vuttr.exceptions.customs;
+package br.com.gusmaomatheus.vuttr.exceptions.customs.tool;
 
 public class ToolNotFoundException extends RuntimeException {
 

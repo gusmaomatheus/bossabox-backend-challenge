@@ -1,8 +1,8 @@
 package br.com.gusmaomatheus.vuttr.services.tool;
 
 import br.com.gusmaomatheus.vuttr.dtos.ToolDTO;
-import br.com.gusmaomatheus.vuttr.exceptions.customs.TitleAlreadyExistsException;
-import br.com.gusmaomatheus.vuttr.exceptions.customs.ToolNotFoundException;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.TitleAlreadyExistsException;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.models.Tool;
 import br.com.gusmaomatheus.vuttr.repositories.ToolRepository;
 import org.springframework.beans.BeanUtils;
