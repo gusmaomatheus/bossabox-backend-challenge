@@ -46,7 +46,7 @@ public class ToolController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody @Valid ToolDTO data) {
+    public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody ToolDTO data) {
         Tool entity = service.update(id, data);
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
