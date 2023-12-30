@@ -3,6 +3,7 @@ package br.com.gusmaomatheus.vuttr.controllers;
 import br.com.gusmaomatheus.vuttr.dtos.ToolDTO;
 import br.com.gusmaomatheus.vuttr.models.Tool;
 import br.com.gusmaomatheus.vuttr.services.tool.ToolServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ToolController {
     private ToolServiceImpl service;
 
     @PostMapping("/insert")
-    public ResponseEntity<Tool> insert(@RequestBody ToolDTO data) {
+    public ResponseEntity<Tool> insert(@RequestBody @Valid ToolDTO data) {
         Tool entity = service.insert(data);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
@@ -45,7 +46,7 @@ public class ToolController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody ToolDTO data) {
+    public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody @Valid ToolDTO data) {
         Tool entity = service.update(id, data);
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
