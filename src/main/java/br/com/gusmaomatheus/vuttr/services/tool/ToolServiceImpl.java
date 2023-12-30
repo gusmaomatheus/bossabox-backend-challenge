@@ -23,4 +23,9 @@ public class ToolServiceImpl implements ToolService {
     public List<Tool> getAll() {
         return repository.findAll();
     }
+
+    @Override
+    public Tool getById(Long id) {
+        return null;
+    }
 }

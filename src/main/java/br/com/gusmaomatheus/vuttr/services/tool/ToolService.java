@@ -10,4 +10,6 @@ public interface ToolService {
     Tool insert(ToolDTO data);
 
     List<Tool> getAll();
+
+    Tool getById(Long id);
 }
