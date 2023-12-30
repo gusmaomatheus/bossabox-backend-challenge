@@ -16,42 +16,42 @@ public class ToolController {
     @Autowired
     private ToolServiceImpl service;
 
-    @PostMapping
+    @PostMapping("/insert")
     public ResponseEntity<Tool> insert(@RequestBody ToolDTO data) {
         Tool entity = service.insert(data);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
-    @GetMapping
+    @GetMapping("/get/all")
     public ResponseEntity<List<Tool>> getAll() {
         List<Tool> allTools = service.getAll();
 
         return ResponseEntity.status(HttpStatus.OK).body(allTools);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Tool> getById(@PathVariable Long id) {
         Tool entity = service.getById(id);
 
         return ResponseEntity.status(HttpStatus.FOUND).body(entity);
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<Tool>> getByTag(@RequestParam("tag") String tag) {
         List<Tool> allTools = service.getByTag(tag);
 
         return ResponseEntity.status(HttpStatus.FOUND).body(allTools);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody ToolDTO data) {
         Tool entity = service.update(id, data);
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
 
