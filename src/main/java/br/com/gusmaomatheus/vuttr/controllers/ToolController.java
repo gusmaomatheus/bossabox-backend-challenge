@@ -37,6 +37,13 @@ public class ToolController {
         return ResponseEntity.status(HttpStatus.FOUND).body(entity);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Tool>> getByTag(@RequestParam("tag") String tag) {
+        List<Tool> allTools = service.getByTag(tag);
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(allTools);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody ToolDTO data) {
         Tool entity = service.update(id, data);
