@@ -43,4 +43,11 @@ public class ToolController {
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        service.delete(id);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
