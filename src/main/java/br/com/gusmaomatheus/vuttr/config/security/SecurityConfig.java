@@ -2,6 +2,7 @@ package br.com.gusmaomatheus.vuttr.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
@@ -17,6 +18,11 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .build();
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.POST, "/vuttr/tools/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/vuttr/tools/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "vuttr/tools/*").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                ).build();
     }
 }
