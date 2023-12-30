@@ -1,6 +1,7 @@
 package br.com.gusmaomatheus.vuttr.services.tool;
 
 import br.com.gusmaomatheus.vuttr.dtos.ToolDTO;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.models.Tool;
 import br.com.gusmaomatheus.vuttr.repositories.ToolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,6 @@ public class ToolServiceImpl implements ToolService {
 
     @Override
     public Tool getById(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow(() -> new ToolNotFoundException(String.format("No records found for id '%d'", id)));
     }
 }
