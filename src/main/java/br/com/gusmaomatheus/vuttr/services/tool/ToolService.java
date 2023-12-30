@@ -12,4 +12,6 @@ public interface ToolService {
     List<Tool> getAll();
 
     Tool getById(Long id);
+
+    Tool update(Long id, ToolDTO data);
 }
