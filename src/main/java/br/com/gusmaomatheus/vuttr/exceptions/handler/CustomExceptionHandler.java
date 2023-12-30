@@ -1,5 +1,6 @@
 package br.com.gusmaomatheus.vuttr.exceptions.handler;
 
+import br.com.gusmaomatheus.vuttr.exceptions.customs.TitleAlreadyExistsException;
 import br.com.gusmaomatheus.vuttr.exceptions.customs.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.exceptions.response.CustomExceptionResponse;
 import org.springframework.http.HttpStatus;
@@ -22,5 +23,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler(TitleAlreadyExistsException.class)
+    private ResponseEntity<CustomExceptionResponse> titleAlreadyExists(TitleAlreadyExistsException exception) {
+        CustomExceptionResponse response = new CustomExceptionResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }
