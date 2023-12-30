@@ -13,6 +13,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        return this.repository.findByUsername(username);
     }
 }
