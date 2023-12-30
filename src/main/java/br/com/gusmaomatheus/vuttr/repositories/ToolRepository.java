@@ -13,4 +13,6 @@ public interface ToolRepository extends JpaRepository<Tool, Long> {
 
     @Query(value = "SELECT tool FROM Tool tool WHERE :tag MEMBER OF tool.tags")
     List<Tool> findByTag(@RequestParam String tag);
+
+    Boolean existsByTitle(String title);
 }
