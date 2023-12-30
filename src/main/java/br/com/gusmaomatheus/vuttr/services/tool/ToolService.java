@@ -14,4 +14,6 @@ public interface ToolService {
     Tool getById(Long id);
 
     Tool update(Long id, ToolDTO data);
+
+    void delete(Long id);
 }

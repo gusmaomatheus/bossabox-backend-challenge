@@ -50,4 +50,11 @@ public class ToolServiceImpl implements ToolService {
 
         return repository.save(entity);
     }
+
+    @Override
+    public void delete(Long id) {
+        Tool entity = repository.findById(id).orElseThrow(() -> new ToolNotFoundException(String.format("No records found for id '%d'", id)));
+
+        repository.delete(entity);
+    }
 }
