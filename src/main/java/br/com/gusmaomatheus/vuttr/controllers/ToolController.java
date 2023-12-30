@@ -29,4 +29,11 @@ public class ToolController {
 
         return ResponseEntity.status(HttpStatus.OK).body(allTools);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Tool> getById(@PathVariable Long id) {
+        Tool entity = service.getById(id);
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(entity);
+    }
 }
