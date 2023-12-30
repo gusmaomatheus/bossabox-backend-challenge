@@ -1,6 +1,7 @@
 package br.com.gusmaomatheus.vuttr.services.tool;
 
 import br.com.gusmaomatheus.vuttr.dtos.ToolDTO;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.TitleAlreadyExistsException;
 import br.com.gusmaomatheus.vuttr.exceptions.customs.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.models.Tool;
 import br.com.gusmaomatheus.vuttr.repositories.ToolRepository;
@@ -22,6 +23,11 @@ public class ToolServiceImpl implements ToolService {
     @Override
     public Tool insert(ToolDTO data) {
         Tool entity = new Tool(data.title(), data.link(), data.description(), data.tags());
+
+        if (repository.existsByTitle(data.title())) {
+            throw new TitleAlreadyExistsException(String.format("A record with title '%s' already exists.", data.title()));
+        }
+
         return repository.save(entity);
     }
 
@@ -57,6 +63,10 @@ public class ToolServiceImpl implements ToolService {
                 .toArray(String[]::new);
 
         Tool entity = repository.findById(id).orElseThrow(() -> new ToolNotFoundException(String.format("No records found for id '%d'", id)));
+
+        if (data.title() != null && !data.title().equals(entity.getTitle()) && repository.existsByTitle(data.title())) {
+            throw new TitleAlreadyExistsException(String.format("A record with title '%s' already exists.", data.title()));
+        }
 
         BeanUtils.copyProperties(data, entity, dataPropertiesNull);
 
