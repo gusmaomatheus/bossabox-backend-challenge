@@ -6,6 +6,8 @@ import br.com.gusmaomatheus.vuttr.repositories.ToolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ToolServiceImpl implements ToolService {
     @Autowired
@@ -15,5 +17,10 @@ public class ToolServiceImpl implements ToolService {
     public Tool insert(ToolDTO data) {
         Tool entity = new Tool(data.title(), data.link(), data.description(), data.tags());
         return repository.save(entity);
+    }
+
+    @Override
+    public List<Tool> getAll() {
+        return repository.findAll();
     }
 }
