@@ -23,6 +23,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     public void register(UserRegisterRequest request) {
+        if (repository.existsByUsername(request.username())) {
+            throw new UsernameAlreadyExistsException(String.format("A record with username '%s' already exists", request.username()));
+        }
+
         String encryptedPassword = securityConfig.passwordEncoder().encode(request.password());
         User user = new User(request.username(), encryptedPassword, request.role());
 
