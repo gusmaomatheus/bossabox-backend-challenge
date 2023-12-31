@@ -1,4 +1,4 @@
-package br.com.gusmaomatheus.vuttr.dtos.auth;
+package br.com.gusmaomatheus.vuttr.dtos.auth.register;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserAuthResponse {
+public class UserRegisterResponse {
     private HttpStatus status;
     private String message;
 }
+
