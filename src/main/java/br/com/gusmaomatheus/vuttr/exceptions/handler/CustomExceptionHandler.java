@@ -1,6 +1,8 @@
 package br.com.gusmaomatheus.vuttr.exceptions.handler;
 
+import br.com.gusmaomatheus.vuttr.exceptions.customs.auth.InvalidPasswordException;
 import br.com.gusmaomatheus.vuttr.exceptions.customs.auth.UsernameAlreadyExistsException;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.auth.UserUsernameNotFoundException;
 import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.TitleAlreadyExistsException;
 import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.exceptions.response.CustomExceptionResponse;
@@ -46,5 +48,27 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(UserUsernameNotFoundException.class)
+    public ResponseEntity<CustomExceptionResponse> usernameNotFound(UserUsernameNotFoundException exception) {
+        CustomExceptionResponse response = new CustomExceptionResponse(
+                HttpStatus.NOT_FOUND.value(),
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<CustomExceptionResponse> invalidPassword(InvalidPasswordException exception) {
+        CustomExceptionResponse response = new CustomExceptionResponse(
+                HttpStatus.FORBIDDEN.value(),
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
     }
 }
