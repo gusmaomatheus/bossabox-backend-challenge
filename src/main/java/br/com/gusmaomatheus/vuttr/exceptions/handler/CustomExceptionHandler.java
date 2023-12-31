@@ -1,7 +1,8 @@
 package br.com.gusmaomatheus.vuttr.exceptions.handler;
 
-import br.com.gusmaomatheus.vuttr.exceptions.customs.TitleAlreadyExistsException;
-import br.com.gusmaomatheus.vuttr.exceptions.customs.ToolNotFoundException;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.auth.UsernameAlreadyExistsException;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.TitleAlreadyExistsException;
+import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.exceptions.response.CustomExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(TitleAlreadyExistsException.class)
     private ResponseEntity<CustomExceptionResponse> titleAlreadyExists(TitleAlreadyExistsException exception) {
+        CustomExceptionResponse response = new CustomExceptionResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public ResponseEntity<CustomExceptionResponse> usernameAlreadyExists(UsernameAlreadyExistsException exception) {
         CustomExceptionResponse response = new CustomExceptionResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 exception.getMessage(),
