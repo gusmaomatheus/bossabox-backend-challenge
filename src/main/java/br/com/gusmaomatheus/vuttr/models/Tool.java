@@ -1,5 +1,6 @@
 package br.com.gusmaomatheus.vuttr.models;
 
+import br.com.gusmaomatheus.vuttr.dtos.ToolDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +27,10 @@ public class Tool {
     @Column(name = "tag")
     private List<String> tags;
 
-    public Tool(String title, String link, String description, List<String> tags) {
-        this.title = title;
-        this.link = link;
-        this.description = description;
-        this.tags = tags;
+    public Tool(ToolDTO data) {
+        this.title = data.title();
+        this.link = data.link();
+        this.description = data.description();
+        this.tags = data.tags();
     }
 }

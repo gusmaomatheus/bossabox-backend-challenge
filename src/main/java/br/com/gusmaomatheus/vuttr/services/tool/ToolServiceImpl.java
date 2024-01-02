@@ -23,7 +23,7 @@ public class ToolServiceImpl implements ToolService {
 
     @Override
     public Tool insert(ToolDTO data) {
-        Tool entity = new Tool(data.title(), data.link(), data.description(), data.tags());
+        Tool entity = new Tool(data);
 
         if (repository.existsByTitle(data.title())) {
             throw new TitleAlreadyExistsException(String.format("A record with title '%s' already exists.", data.title()));
