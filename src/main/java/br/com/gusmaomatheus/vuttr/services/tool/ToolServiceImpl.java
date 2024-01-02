@@ -5,6 +5,7 @@ import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.TitleAlreadyExistsExce
 import br.com.gusmaomatheus.vuttr.exceptions.customs.tool.ToolNotFoundException;
 import br.com.gusmaomatheus.vuttr.models.Tool;
 import br.com.gusmaomatheus.vuttr.repositories.ToolRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -54,6 +55,7 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
+    @Transactional
     public Tool update(Long id, ToolDTO data) {
         final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
 
@@ -74,6 +76,7 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Tool entity = repository.findById(id).orElseThrow(() -> new ToolNotFoundException(String.format("No records found for id '%d'", id)));
 
