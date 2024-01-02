@@ -27,7 +27,19 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/vuttr/auth/*").permitAll()
+                        .requestMatchers(
+                                "/vuttr/auth/**",
+                                "/v2/api-docs",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-resources",
+                                "/swagger-resources/**",
+                                "/configuration/ui",
+                                "/configuration/security",
+                                "/swagger-ui/**",
+                                "/webjars/**",
+                                "/swagger-ui.html"
+                                ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/vuttr/tools/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/vuttr/tools/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "vuttr/tools/*").hasRole("ADMIN")
