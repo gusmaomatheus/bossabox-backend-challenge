@@ -26,8 +26,8 @@ public class AuthController {
     private AuthServiceImpl service;
 
     @Operation(
-            summary = "An endpoint that makes an HTTP POST request in order to register a new user in the system.",
-            description = "Endpoint for registering a new user in the system.",
+            summary = "Endpoint for registering a new user in the system.",
+            description = "An endpoint that makes an HTTP POST request in order to register a new user in the system.",
             parameters = {
                     @Parameter(
                             name = "username",
@@ -72,8 +72,8 @@ public class AuthController {
     }
 
     @Operation(
-            summary = "An endpoint that makes an HTTP POST request to authenticate a user on the system.",
-            description = "Endpoint for a user to authenticate to the system.",
+            summary = "Endpoint for a user to authenticate to the system.",
+            description = "An endpoint that makes an HTTP POST request to authenticate a user on the system.",
             parameters = {
                     @Parameter(
                             name = "username",
