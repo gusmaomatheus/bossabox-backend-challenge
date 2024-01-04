@@ -48,7 +48,7 @@ $ docker-compose up -d
 - Executar a imagem:
 
 ```bash
-$ docker run -p 3000:3000 vuttr-api
+$ docker run -p 3000:3000 vuttr
 ``` 
 
 ### Como se autenticar na aplicação:
